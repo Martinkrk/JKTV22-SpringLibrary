@@ -1,5 +1,8 @@
 package ee.ivkhk.jktv22springlibrary.controllers;
 
+import ee.ivkhk.jktv22springlibrary.entity.Book;
+import ee.ivkhk.jktv22springlibrary.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
+    @Autowired
+    private BookRepository bookRepository;
+
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("title", "JKTV22-SpringLibrary");
@@ -29,6 +35,8 @@ public class MainController {
         model.addAttribute("title", "Adding a book");
         model.addAttribute("caption", caption);
         model.addAttribute("result", HttpStatus.OK);
+        Book book = new Book("Voina i Mir", 2000, 2, 2, "Lev");
+        bookRepository.save(book);
         return "addBook";
     }
 

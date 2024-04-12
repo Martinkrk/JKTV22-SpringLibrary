@@ -1,9 +1,16 @@
 package ee.ivkhk.jktv22springlibrary.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 
 @Entity
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private Integer publishedYear;
@@ -20,7 +27,6 @@ public class Book {
     }
 
     public Book() {
-
     }
 
     public Long getId() {
